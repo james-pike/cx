@@ -72,12 +72,6 @@ export default component$(() => {
     isPlaying.value = true;
   });
 
-  // Shared button style for perfect consistency
-  const bookButtonClass = "shrink-0 min-w-[90px] px-4 py-1.5 text-sm font-medium text-white text-center bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg hover:from-primary-700 hover:to-primary-800 transition-all duration-200 whitespace-nowrap";
-
-  // Arrow button styles - now for bottom placement
-  const arrowButtonClass = "w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200 opacity-75 hover:opacity-100 disabled:opacity-30 disabled:cursor-not-allowed text-primary-600";
-
   return (
     <>
       <div class="p-5 md:px-16 py-20 md:py-28 bg-gradient-to-b from-black via-tertiary-950 to-black max-w-7xl md:mx-auto">

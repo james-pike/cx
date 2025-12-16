@@ -73,12 +73,15 @@ const CustomAccordion = component$(({ items, show }: { items: any[]; show: Signa
                         normalizePath(subitem.href) ===
                         normalizePath(location.url.pathname + (location.url.hash || ""));
                       const isExternalLink = subitem.href?.startsWith('http');
+                      const linkProps = {
+                        href: subitem.href,
+                        ...(isExternalLink && { target: "_blank", rel: "noopener noreferrer" })
+                      };
                       return (
                         <li key={subitem.title} class="flex items-center">
                           <span class="text-primary-300 !text-2xs mr-3">✦</span>
                           <a
-                            href={subitem.href}
-                            {...(isExternalLink && { target: "_blank", rel: "noopener noreferrer" })}
+                            {...linkProps}
                             class={cn(
                               "block text-gray-700 dark:text-gray-200 !text-xl p-3 pl-1 font-medium transition-all duration-200",
                               isSubitemActive &&
@@ -96,20 +99,27 @@ const CustomAccordion = component$(({ items, show }: { items: any[]; show: Signa
                 </div>
               </>
             ) : (
-              <a
-                href={item.href}
-                {...(item.href?.startsWith('http') && { target: "_blank", rel: "noopener noreferrer" })}
-                class={cn(
-                  "block lg text-gray-700 !text-xl dark:text-gray-200 p-3 px-5 font-medium transition-all duration-200",
-                  isActive &&
-                    "bg-primary-100 dark:bg-primary-100/80 !important text-secondary-800 dark:text-secondary-800 !important font-bold !important",
-                  "hover:bg-primary-100 dark:hover:bg-primary-100/80"
-                )}
-                onClick$={closeModal}
-              >
-                <span>{item.title}</span>
-                {item.badge}
-              </a>
+              (() => {
+                const itemLinkProps = {
+                  href: item.href,
+                  ...(item.href?.startsWith('http') && { target: "_blank", rel: "noopener noreferrer" })
+                };
+                return (
+                  <a
+                    {...itemLinkProps}
+                    class={cn(
+                      "block lg text-gray-700 !text-xl dark:text-gray-200 p-3 px-5 font-medium transition-all duration-200",
+                      isActive &&
+                        "bg-primary-100 dark:bg-primary-100/80 !important text-secondary-800 dark:text-secondary-800 !important font-bold !important",
+                      "hover:bg-primary-100 dark:hover:bg-primary-100/80"
+                    )}
+                    onClick$={closeModal}
+                  >
+                    <span>{item.title}</span>
+                    {item.badge}
+                  </a>
+                );
+              })()
             )}
           </div>
         );
