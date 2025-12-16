@@ -6,6 +6,8 @@ export default component$(() => {
   const isAutoPlaying = useSignal(true);
   const currentSlideIndex = useSignal(0);
   const rightColumnImageIndex = useSignal(0);
+  const touchStartX = useSignal(0);
+  const touchEndX = useSignal(0);
 
   const carouselImages = [
     "/images/hero.webp",
@@ -156,7 +158,32 @@ export default component$(() => {
       <div class="relative z-10 container -mt-60 mx-auto px-4 py-8">
         {/* Mobile Layout - Card Stack */}
         <div class="lg:hidden">
-          <div class="hero-carousel-container">
+          <div
+            class="hero-carousel-container"
+            onTouchStart$={(e) => {
+              touchStartX.value = e.touches[0].clientX;
+            }}
+            onTouchMove$={(e) => {
+              touchEndX.value = e.touches[0].clientX;
+            }}
+            onTouchEnd$={() => {
+              const swipeThreshold = 50;
+              const diff = touchStartX.value - touchEndX.value;
+
+              if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                  // Swipe left - next slide
+                  currentSlideIndex.value = (currentSlideIndex.value + 1) % heroCards.length;
+                } else {
+                  // Swipe right - previous slide
+                  currentSlideIndex.value = (currentSlideIndex.value - 1 + heroCards.length) % heroCards.length;
+                }
+              }
+
+              touchStartX.value = 0;
+              touchEndX.value = 0;
+            }}
+          >
             {heroCards.map((card, index) => {
               const getCardClass = () => {
                 const current = currentSlideIndex.value;
@@ -246,7 +273,32 @@ export default component$(() => {
 
         {/* Desktop Layout - Card Stack */}
         <div class="hidden lg:block max-w-7xl  mx-auto">
-          <div class="hero-carousel-container">
+          <div
+            class="hero-carousel-container"
+            onTouchStart$={(e) => {
+              touchStartX.value = e.touches[0].clientX;
+            }}
+            onTouchMove$={(e) => {
+              touchEndX.value = e.touches[0].clientX;
+            }}
+            onTouchEnd$={() => {
+              const swipeThreshold = 50;
+              const diff = touchStartX.value - touchEndX.value;
+
+              if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                  // Swipe left - next slide
+                  currentSlideIndex.value = (currentSlideIndex.value + 1) % heroCards.length;
+                } else {
+                  // Swipe right - previous slide
+                  currentSlideIndex.value = (currentSlideIndex.value - 1 + heroCards.length) % heroCards.length;
+                }
+              }
+
+              touchStartX.value = 0;
+              touchEndX.value = 0;
+            }}
+          >
             {heroCards.map((card, index) => {
               const getCardClass = () => {
                 const current = currentSlideIndex.value;
