@@ -155,7 +155,7 @@ export default component$(() => {
       {/* Subtle grid overlay */}
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" aria-hidden="true"></div>
 
-      <div class="relative z-10 container -mt-60 mx-auto px-4 py-8">
+      <div class="relative z-10 container -mt-20 mx-auto px-4 py-8">
         {/* Mobile Layout - Card Stack */}
         <div class="lg:hidden">
           <div
@@ -202,7 +202,8 @@ export default component$(() => {
               return (
                 <div key={index} class={`carousel-card-wrapper ${getCardClass()}`}>
                   {/* Mobile Text Panel */}
-                  <div class="bg-gradient-to-br from-tertiary-900/80 to-black/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-800/50 shadow-2xl">
+                  <div class="relative bg-gradient-to-br from-tertiary-900/80 to-black/80 backdrop-blur-sm p-8 rounded-2xl border border-primary-800/50 shadow-2xl">
+                    <div class="absolute inset-0 bg-black/70 -z-10 rounded-2xl"></div>
                     <div class="inline-block mb-4">
                       <span class="px-3 py-1 rounded-full bg-primary-900/50 border border-primary-600/30 text-primary-300 text-xs font-medium tracking-wider uppercase">
                         {card.badge}
