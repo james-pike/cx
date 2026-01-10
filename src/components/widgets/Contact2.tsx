@@ -37,11 +37,11 @@ export default component$(() => {
   ];
 
   return (
-    <section id="contact" class="relative overflow-hidden py-12 md:py-16">
+    <section id="contact" class="relative overflow-hidden py-12 md:py-16 bg-gradient-to-b from-black via-tertiary-950 to-black">
       <div class="relative max-w-6xl mx-auto px-5 sm:px-6">
         <div class="text-center mb-12">
           <h2 class="!text-5xl md:!text-5xl xdxd font-bold mb-6">
-            <span class="bg-gradient-to-r from-secondary-800 via-tertiary-600 to-primary-600 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
               Get in Touch
             </span>
           </h2>
@@ -49,17 +49,17 @@ export default component$(() => {
 
         <div class="grid lg:grid-cols-2 gap-6 lg:gap-8 items-start">
           {/* Left side image */}
-          <div class="relative rounded-2xl overflow-hidden shadow-xl border-2 border-secondary-200/50">
+          <div class="relative rounded-2xl overflow-hidden shadow-xl border-2 border-primary-600/30">
             <Image
-              src="/images/space.jpeg"
+              src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80"
               layout="constrained"
               width={600}
               height={400}
-              alt="Terra Pottery Studio"
+              alt="Music Studio"
               class="w-full h-auto max-w-full mx-auto object-cover"
               breakpoints={[320, 480, 640, 768, 1024]}
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-secondary-900/60 via-transparent to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
           </div>
 
           {/* Right side cards */}
@@ -70,18 +70,18 @@ export default component$(() => {
                 href={info.link}
                 target={info.link.startsWith('http') ? "_blank" : undefined}
                 rel={info.link.startsWith('http') ? "noopener noreferrer" : undefined}
-                class="flex flex-col p-6 rounded-2xl border-2 border-primary-100 dark:border-secondary-700 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-secondary-200 transition-all duration-300 
-                       bg-gradient-to-br from-white/50 via-primary-50/30 to-secondary-50/30 dark:from-gray-800/50 dark:via-primary-900/30 dark:to-secondary-900/30"
+                class="flex flex-col p-6 rounded-2xl border-2 border-tertiary-800/50 backdrop-blur-sm shadow-lg hover:shadow-xl hover:border-primary-600/50 transition-all duration-300
+                       bg-gradient-to-br from-tertiary-900/50 via-black/50 to-tertiary-950/50"
               >
                 <div class="flex items-center space-x-4 mb-4">
-                  <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-secondary-100/50 to-secondary-200/50 dark:from-secondary-700/50 dark:to-secondary-800/50 rounded-xl flex items-center justify-center text-secondary-800 dark:text-secondary-300">
+                  <div class="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-800/50 to-primary-900/50 rounded-xl flex items-center justify-center text-secondary-400">
                     {info.icon}
                   </div>
-                  <h3 class="text-md font-semibold text-secondary-900 dark:text-secondary-100">
+                  <h3 class="text-md font-semibold text-white">
                     {info.title}
                   </h3>
                 </div>
-                <p class="text-sm text-primary-700 dark:text-primary-300">{info.details}</p>
+                <p class="text-sm text-tertiary-300">{info.details}</p>
               </a>
             ))}
           </div>

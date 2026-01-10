@@ -91,7 +91,7 @@ export default component$(() => {
                 <div class="relative">
                   <div class="absolute -inset-4 bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 rounded-2xl opacity-20 blur-xl"></div>
                   <Image
-                    src="/images/space.jpeg"
+                    src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&q=80"
                     alt="Professional Violinist"
                     class="relative w-full max-w-lg lg:max-w-none rounded-2xl object-cover shadow-2xl border border-primary-800/50"
                   />
@@ -109,7 +109,7 @@ export default component$(() => {
                 <div class="relative">
                   <div class="absolute -inset-4 bg-gradient-to-r from-secondary-600 via-secondary-500 to-secondary-600 rounded-2xl opacity-15 blur-xl"></div>
                   <Image
-                    src="/images/a2.webp"
+                    src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&q=80"
                     alt="Musical Journey"
                     class="relative w-full max-w-lg lg:max-w-none rounded-2xl object-cover shadow-2xl border border-secondary-800/50"
                   />
@@ -154,7 +154,7 @@ export default component$(() => {
                 <div class="relative">
                   <div class="absolute -inset-4 bg-gradient-to-r from-primary-600 via-secondary-500 to-primary-600 rounded-2xl opacity-15 blur-xl"></div>
                   <Image
-                    src="/images/a3.jpg"
+                    src="https://images.unsplash.com/photo-1415201364774-f6f0bb35f28f?w=800&q=80"
                     alt="Performance Philosophy"
                     class="relative w-full max-w-lg lg:max-w-none rounded-2xl object-cover shadow-2xl border border-primary-800/50"
                   />

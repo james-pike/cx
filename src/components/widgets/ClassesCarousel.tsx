@@ -187,7 +187,7 @@ export default component$(() => {
             >
               <div class="h-56 w-full overflow-hidden relative">
                 <img
-                  src="/images/corporate.webp"
+                  src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?w=800&q=80"
                   alt="Live Performances"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
@@ -216,7 +216,7 @@ export default component$(() => {
             >
               <div class="h-56 w-full overflow-hidden relative">
                 <img
-                  src="/images/private.jpeg"
+                  src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=800&q=80"
                   alt="Studio Sessions"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 md:object-top lg:object-top"
                 />

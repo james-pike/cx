@@ -212,14 +212,15 @@ export default component$(() => {
           }
         `}
       </style>
-      {/* Header */}
+      {/* Header - hidden on mobile */}
       <header
         id="header"
         class={`
+          hidden lg:block
           sticky top-0 z-40 flex-none mx-auto max-w-7xl
           transition-all duration-300 ease-in-out
-          bg-gradient-to-br from-primary-950 via-black to-tertiary-950
-          ${store.isScrolling ? "md:backdrop-blur-sm" : ""}
+          bg-gradient-to-r from-amber-50 via-orange-50 to-yellow-50
+          ${store.isScrolling ? "md:backdrop-blur-sm shadow-lg" : ""}
         `}
         window:onScroll$={() => {
           const scrollY = window.scrollY;
@@ -284,7 +285,7 @@ export default component$(() => {
             aria-label="Main navigation"
           >
             {menu && menu.items ? (
-              <ul class="flex flex-col md:flex-row text-white md:self-center w-full md:w-auto text-xl md:text-xl tracking-[0.01rem] font-medium bg-gradient-to-br from-primary-900/50 via-black/60 to-tertiary-900/50 backdrop-blur-md border border-primary-600/30 shadow-xl rounded-full px-2 py-1">
+              <ul class="flex flex-col md:flex-row text-stone-800 md:self-center w-full md:w-auto text-xl md:text-xl tracking-[0.01rem] font-medium bg-gradient-to-br from-amber-100/80 via-orange-50/80 to-yellow-100/80 backdrop-blur-md border border-amber-300/50 shadow-xl rounded-full px-2 py-1">
                 {menu.items.map(({ text, href, items,  }, key) => {
                   const isActive = location.url.pathname === href;
                   return (
@@ -294,7 +295,7 @@ export default component$(() => {
                           <a
                             href={href}
                             class={`
-                              hover:text-primary-300
+                              hover:text-amber-600
                               px-4 py-3
                               flex items-center
                               transition-all duration-200
@@ -305,11 +306,11 @@ export default component$(() => {
                               after:bottom-[6px]
                               after:left-1/2
                               after:h-[2px]
-                              after:bg-primary-400
+                              after:bg-amber-600
                               after:transition-all
                               after:duration-200
                               ${isActive
-                                ? "text-primary-400 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
+                                ? "text-amber-700 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
                                 : "after:w-0 md:hover:after:w-1/2 md:hover:after:left-1/4"
                               }
                             `}
@@ -337,8 +338,8 @@ export default component$(() => {
                               pl-4 md:pl-0
                               md:hidden
                               font-medium
-                              md:bg-gradient-to-br md:from-primary-900/90 md:via-black/95 md:to-tertiary-900/90
-                              md:border md:border-primary-600/30
+                              md:bg-gradient-to-br md:from-amber-50/95 md:via-orange-50/95 md:to-yellow-50/95
+                              md:border md:border-amber-300/50
                               md:min-w-[200px]
                               drop-shadow-xl
                               py-2
@@ -353,9 +354,9 @@ export default component$(() => {
                                 <li key={key2}>
                                   <a
                                     class={`
-                                      hover:bg-primary-800/30
-                                      hover:text-primary-300
-                                      text-white
+                                      hover:bg-amber-200/50
+                                      hover:text-amber-700
+                                      text-stone-700
                                       py-2 px-5
                                       flex items-center gap-2
                                       whitespace-no-wrap
@@ -366,11 +367,11 @@ export default component$(() => {
                                       after:bottom-[4px]
                                       after:left-1/2
                                       after:h-[2px]
-                                      after:bg-primary-400
+                                      after:bg-amber-600
                                       after:transition-all
                                       after:duration-200
                                       ${isDropdownActive
-                                        ? "text-primary-400 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
+                                        ? "text-amber-700 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
                                         : "after:w-0 md:hover:after:w-1/2 md:hover:after:left-1/4"
                                       }
                                       ${isFirst ? "hover:rounded-t-lg" : ""}
@@ -404,7 +405,7 @@ export default component$(() => {
                       ) : (
                         <a
                           class={`
-                            hover:text-primary-300
+                            hover:text-amber-600
                             px-4 py-3
                             flex items-center
                             relative
@@ -414,12 +415,12 @@ export default component$(() => {
                             after:bottom-[6px]
                             after:left-1/2
                             after:h-[2px]
-                            after:bg-primary-400
+                            after:bg-amber-600
                             after:transition-all
                             after:duration-200
                             rounded-full
                             ${isActive
-                              ? "text-primary-400 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
+                              ? "text-amber-700 after:w-1/2 after:left-1/4 md:group-hover:[&:not(:hover)]:after:w-0 md:group-hover:[&:not(:hover)]:after:left-1/2"
                               : "after:w-0 md:hover:after:w-1/2 md:hover:after:left-1/4"
                             }
                           `}
@@ -440,7 +441,7 @@ export default component$(() => {
               href="https://bookeo.com/earthenvessels"
               target="_blank"
               rel="noopener noreferrer"
-              class="bg-gradient-to-r from-primary-400 via-primary-500 to-primary-400 group relative inline-flex items-center justify-center px-3 pl-5 py-2.5 text-xl font-semibold text-white rounded-xl shadow-lg hover:shadow-[0_0_12px_rgba(255,255,255,0.4)] transition-all duration-300 overflow-hidden focus:outline-none focus:ring-2 focus:ring-secondary-600 before:content-[''] before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:bg-white before:opacity-0 before:transform before:-translate-x-full group-hover:before:opacity-100 group-hover:before:translate-x-0 before:transition-all before:duration-500 hover:scale-102 hover:bg-gradient-to-r hover:from-primary-400 hover:via-primary-400 hover:to-primary-300"
+              class="bg-gradient-to-r from-amber-600 via-amber-700 to-amber-600 group relative inline-flex items-center justify-center px-3 pl-5 py-2.5 text-xl font-semibold text-white rounded-xl shadow-lg hover:shadow-[0_0_12px_rgba(217,119,6,0.4)] transition-all duration-300 overflow-hidden focus:outline-none focus:ring-2 focus:ring-amber-400 before:content-[''] before:absolute before:bottom-0 before:left-0 before:h-0.5 before:w-full before:bg-white before:opacity-0 before:transform before:-translate-x-full group-hover:before:opacity-100 group-hover:before:translate-x-0 before:transition-all before:duration-500 hover:scale-102 hover:bg-gradient-to-r hover:from-amber-500 hover:via-amber-600 hover:to-amber-500"
               role="button"
               aria-label="Book a workshop"
             >

@@ -1,10 +1,8 @@
 export const SITE = {
-  name: "earthen vessels",
+  name: "ps",
 
-  title:
-    "earthen vessels" ,
-  description:
-    "earthen vessels - Listening, Connecting, Creating" ,
+  title: "ps",
+  description: "ps - Session Violinist",
 
   origin: "https://earthenvessels.ca",
   basePathname: "/",

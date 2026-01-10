@@ -123,7 +123,7 @@ export default component$(() => {
       left: 0;
       right: 0;
       height: 50px;
-      background: linear-gradient(transparent, rgba(255,255,255,0.95));
+      background: linear-gradient(transparent, rgba(0,0,0,0.95));
       pointer-events: none;
     }
     .review-card-wrapper {
@@ -155,7 +155,7 @@ export default component$(() => {
     }
   `);
 
-  const arrowButtonClass = "w-10 h-10 flex items-center justify-center rounded-full bg-white/80 hover:bg-white shadow-lg transition-all duration-200 opacity-75 hover:opacity-100 disabled:opacity-30 disabled:cursor-not-allowed text-primary-600";
+  const arrowButtonClass = "w-10 h-10 flex items-center justify-center rounded-full bg-tertiary-800/80 hover:bg-tertiary-700 text-white shadow-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed";
 
   // Fixed typing issue with Intl.DateTimeFormatOptions
   function formatDate(dateString: string) {
@@ -210,19 +210,19 @@ export default component$(() => {
 
   return (
     <>
-      <section class="relative overflow-hidden py-12 md:py-16">
+      <section class="relative overflow-hidden py-12 md:py-16 bg-gradient-to-b from-black via-tertiary-950 to-black">
         <div class="relative max-w-7xl mx-auto px-5 sm:px-6">
           <div class="text-center mb-12">
             <h2 class="!text-5xl md:text-6xl px-4 font-bold mb-6">
-              <span class="bg-gradient-to-r xdxd from-primary-600 via-tertiary-600 to-primary-600 bg-clip-text text-transparent">
-                Participant Reviews
+              <span class="bg-gradient-to-r xdxd from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
+                Client Reviews
               </span>
             </h2>
           </div>
 
           <div class="relative max-w-6xl mx-auto">
             {reviews.value.length === 0 ? (
-              <div class="text-center py-12 text-primary-600 text-lg">
+              <div class="text-center py-12 text-tertiary-300 text-lg">
                 Loading reviews...
               </div>
             ) : (
@@ -242,30 +242,30 @@ export default component$(() => {
                     <Carousel.Slide key={review.id} class="h-auto">
                       <div
                         data-review-id={review.id}
-                        class={`review-card-wrapper ${overflowingReviews.value.includes(review.id) ? 'has-overflow' : ''} bg-gradient-to-br from-white/70 via-primary-50/70 to-secondary-50/70 dark:from-gray-800/90 dark:via-primary-900/30 dark:to-secondary-900/30 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:border-secondary-200 border-2 border-primary-100 dark:border-secondary-700`}
+                        class={`review-card-wrapper ${overflowingReviews.value.includes(review.id) ? 'has-overflow' : ''} bg-gradient-to-br from-tertiary-900/70 via-black/70 to-tertiary-950/70 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden hover:border-primary-600/50 border-2 border-tertiary-800/50`}
                         onClick$={() => overflowingReviews.value.includes(review.id) && toggleExpand(review.id)}
                       >
                         <div class="flex justify-center mb-4 pt-6">
                           <div class="flex space-x-1">{renderStars(review.rating)}</div>
                         </div>
                         <div class={`review-content-wrapper px-6 mb-2 ${expandedReviews.value.includes(review.id) ? 'expanded' : ''}`}>
-                          <blockquote class={`review-content text-lg pb-3 text-secondary-900 dark:text-secondary-100 ${expandedReviews.value.includes(review.id) ? 'expanded' : ''}`}>
+                          <blockquote class={`review-content text-lg pb-3 text-tertiary-200 ${expandedReviews.value.includes(review.id) ? 'expanded' : ''}`}>
                             "{review.review}"
                           </blockquote>
                         </div>
                         <div class="flex items-center justify-between px-6 mb-1">
                           <div class="text-left">
-                            <h4 class=" font-bold text-secondary-900 dark:text-secondary-100">
+                            <h4 class="font-bold text-white">
                               {review.name}
                             </h4>
                           </div>
                           {overflowingReviews.value.includes(review.id) && (
                             <div class="expand-indicator">
-                              <LuChevronDown class={`w-5 h-5 text-primary-600 dark:text-primary-400 transition-transform duration-200 ${expandedReviews.value.includes(review.id) ? 'rotate-180' : ''}`} />
+                              <LuChevronDown class={`w-5 h-5 text-primary-400 transition-transform duration-200 ${expandedReviews.value.includes(review.id) ? 'rotate-180' : ''}`} />
                             </div>
                           )}
                         </div>
-                        <p class="text-primary-500 dark:text-primary-400 text-xs pb-3 px-6">
+                        <p class="text-tertiary-400 text-xs pb-3 px-6">
                           {formatRelativeDate(review.date)}
                         </p>
                       </div>
@@ -296,11 +296,11 @@ export default component$(() => {
       </section>
 
       {/* Media Articles Section */}
-      <section id="news" class="scroll-mt-20 relative overflow-hidden py-16 md:py-16 bg-gradient-to-br from-primary-50/30 to-secondary-50/30 dark:from-gray-900/50 dark:to-gray-800/50">
+      <section id="news" class="scroll-mt-20 relative overflow-hidden py-16 md:py-16 bg-gradient-to-br from-tertiary-950/50 to-black">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
           <div class="text-center mb-12">
             <h2 class="!text-4xl md:text-4xl font-bold mb-6">
-              <span class="bg-gradient-to-r from-primary-600 via-tertiary-600 to-primary-600 bg-clip-text text-transparent">
+              <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
                 In The News
               </span>
             </h2>
@@ -310,20 +310,20 @@ export default component$(() => {
             {[
               {
                 id: 1,
-                title: "Why earthen vessels is a story worth telling",
-                publication: "Kitchissippi Times",
+                title: "Rising Star: Session Violinist Making Waves",
+                publication: "Music Weekly",
                 date: "2025-08-16",
-                url: "https://kitchissippi.com/why-earthen-vessels-is-a-story-worth-telling/",
-                image: "/images/kitchissippi.webp"
+                url: "#",
+                image: "https://images.unsplash.com/photo-1504898770365-14faca6a7320?w=800&q=80"
               },
-         
+
             ].map((article) => (
               <a
                 key={article.id}
                 href={article.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="group bg-white/30 dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border-2 border-primary-100 dark:border-secondary-700 hover:border-primary-300 dark:hover:border-primary-600"
+                class="group bg-gradient-to-br from-tertiary-900/50 to-black rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border-2 border-tertiary-800/50 hover:border-primary-600/50"
               >
                 <div class="aspect-video overflow-hidden">
                   <img
@@ -334,14 +334,14 @@ export default component$(() => {
                 </div>
                 <div class="p-6">
                   <div class="flex items-center justify-between mb-3">
-                    <span class="text-sm font-semibold text-primary-600 dark:text-primary-400">
+                    <span class="text-sm font-semibold text-primary-400">
                       {article.publication}
                     </span>
-                    <span class="text-xs text-gray-500 dark:text-gray-400">
+                    <span class="text-xs text-tertiary-400">
                       {formatDate(article.date)}
                     </span>
                   </div>
-                  <h3 class="text-xl font-bold text-secondary-900 dark:text-secondary-100 mb-3 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                  <h3 class="text-xl font-bold text-white mb-3 group-hover:text-primary-300 transition-colors">
                     {article.title}
                   </h3>
                 </div>

@@ -84,26 +84,25 @@ export default component$(() => {
   // Show loading state if no FAQs yet
   if (faqs.value.length === 0) {
     return (
-      <section class="relative overflow-hidden py-12 md:py-16">
+      <section class="relative overflow-hidden py-12 md:py-16 bg-gradient-to-b from-black via-tertiary-950 to-black">
         <div class="relative max-w-5xl mx-auto px-5 sm:px-6 text-center">
           <h2 class="!text-5xl md:text-6xl xdxd font-bold mb-6">
-            <span class="bg-gradient-to-r from-primary-600 via-tertiary-600 to-secondary-800 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
               Frequently Asked Questions
             </span>
           </h2>
-          {/* <p class="text-primary-700 dark:text-primary-300">Loading FAQs...</p> */}
         </div>
       </section>
     );
   }
 
   return (
-    <section class="faq-section relative overflow-hidden py-12 md:py-16">
+    <section class="faq-section relative overflow-hidden py-12 md:py-16 bg-gradient-to-b from-black via-tertiary-950 to-black">
       <div class="relative max-w-5xl mx-auto px-5 sm:px-6">
         {/* Section Header */}
         <div class="text-center mb-12">
           <h2 class="!text-5xl md:text-6xl xdxd font-bold mb-6">
-            <span class="bg-gradient-to-r from-primary-600 via-tertiary-600 to-secondary-800 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
               Frequently Asked Questions
             </span>
           </h2>
@@ -115,7 +114,7 @@ export default component$(() => {
           <div class="flex-1 flex flex-col gap-4">
             {leftColumn.map((item) => (
               <div key={item.id} class="group">
-                <div class="bg-gradient-to-br from-white/50 via-primary-50/30 to-secondary-50/30 dark:from-gray-800/90 rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="bg-gradient-to-br from-tertiary-900/50 to-black rounded-2xl border border-tertiary-800/50 shadow-lg hover:shadow-xl hover:border-primary-600/50 transition-all duration-300">
                   <button
                     onClick$={() => toggleItem(item.id!)}
                     class="w-full px-6 py-5 flex items-center justify-between text-left transition-all"
@@ -124,7 +123,7 @@ export default component$(() => {
                   >
                     <div class="flex items-center gap-3">
                       <img src="/images/logo2-cropped.svg" alt="FAQ Icon" class="w-5 h-5 mr-2 md:w-[25px] md:h-[25px]" />
-                      <h3 class="!text-xl md:!text-xl font-semibold text-secondary-900 dark:text-secondary-100">
+                      <h3 class="!text-xl md:!text-xl font-semibold text-white">
                         {item.question}
                       </h3>
                     </div>
@@ -132,7 +131,7 @@ export default component$(() => {
                       class={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                         openItems.value === item.id
                           ? "bg-primary-600 text-white"
-                          : "bg-primary-100 text-secondary-800"
+                          : "bg-tertiary-800 text-primary-400"
                       }`}
                     >
                       <svg
@@ -155,9 +154,9 @@ export default component$(() => {
                   >
                     <div class="px-6 pb-5">
                       {item.isHtml ? (
-                        <div class="text-primary-700 dark:text-primary-300" dangerouslySetInnerHTML={item.answer} />
+                        <div class="text-tertiary-300" dangerouslySetInnerHTML={item.answer} />
                       ) : (
-                        <p class="text-primary-700 dark:text-primary-300">{item.answer}</p>
+                        <p class="text-tertiary-300">{item.answer}</p>
                       )}
                     </div>
                   </div>
@@ -170,7 +169,7 @@ export default component$(() => {
           <div class="flex-1 flex flex-col gap-4 mt-4 md:mt-0">
             {rightColumn.map((item) => (
               <div key={item.id} class="group">
-                <div class="bg-gradient-to-br from-white/50 via-primary-50/30 to-secondary-50/30 dark:from-gray-800/90 rounded-2xl border shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="bg-gradient-to-br from-tertiary-900/50 to-black rounded-2xl border border-tertiary-800/50 shadow-lg hover:shadow-xl hover:border-primary-600/50 transition-all duration-300">
                   <button
                     onClick$={() => toggleItem(item.id!)}
                     class="w-full px-6 py-5 flex items-center justify-between text-left transition-all"
@@ -179,7 +178,7 @@ export default component$(() => {
                   >
                     <div class="flex items-center gap-3">
                       <img src="/images/logo2-cropped.svg" alt="FAQ Icon" class="w-5 h-5 mr-2 md:w-[25px] md:h-[25px]" />
-                      <h3 class="!text-xl md:!text-xl font-semibold text-secondary-900 dark:text-secondary-100">
+                      <h3 class="!text-xl md:!text-xl font-semibold text-white">
                         {item.question}
                       </h3>
                     </div>
@@ -187,7 +186,7 @@ export default component$(() => {
                       class={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                         openItems.value === item.id
                           ? "bg-primary-600 text-white"
-                          : "bg-primary-100 text-secondary-800"
+                          : "bg-tertiary-800 text-primary-400"
                       }`}
                     >
                       <svg
@@ -210,9 +209,9 @@ export default component$(() => {
                   >
                     <div class="px-6 pb-5">
                       {item.isHtml ? (
-                        <div class="text-primary-700 dark:text-primary-300" dangerouslySetInnerHTML={item.answer} />
+                        <div class="text-tertiary-300" dangerouslySetInnerHTML={item.answer} />
                       ) : (
-                        <p class="text-primary-700 dark:text-primary-300">{item.answer}</p>
+                        <p class="text-tertiary-300">{item.answer}</p>
                       )}
                     </div>
                   </div>

@@ -7,7 +7,7 @@ export const newsletters: Post[] = [
     id: "newsletter-2",
     slug: "october",
     title: "Welcome Fall at earthen vessels",
-    image: "/images/n22.jpeg",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=800&q=80",
     excerpt: "As the air turns crisp and the leaves begin to drift",
     publishDate: new Date("2025-10-01"),
     tags: ["newsletter", "update"],
@@ -24,13 +24,13 @@ During the evening, visitors are invited to:
 - Take part in hands-on demonstrations.
 - Explore the beauty of texturing clay and discover how surface design can bring each vessel to life.
 
-![Clay texturing demonstration](/images/n3.jpg)
+![Music performance](https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=800&q=80)
 
 ## The Yoga of Clay
 
 At earthen vessels, we see making with clay as a process of slowing down, listening, and shaping meaning. Just as yoga invites us into mindful movement, clay invites us into mindful making. With gentle guidance, we can shape not only bowls and mugs, but also moments of presence, bringing more meaning in the process of making.
 
-![Fall at earthen vessels](/images/n2.jpeg)
+![Live concert](https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80)
 
 
 We look forward to welcoming you into the studio this fall season. For more information please reach out to us at hello@earthenvessels.ca.
@@ -48,7 +48,7 @@ We look forward to welcoming you into the studio this fall season. For more info
     id: "newsletter-1",
     slug: "august",
     title: "In the Heart of Summer",
-    image: "/images/maria2.jpg",
+    image: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80",
     excerpt: "Hello dear friends of earth and clay",
     publishDate: new Date("2025-08-01"),
     tags: ["newsletter", "update"],
