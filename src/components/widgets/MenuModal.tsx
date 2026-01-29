@@ -1,10 +1,11 @@
 import { component$, useSignal, $, Signal, useVisibleTask$ } from "@builder.io/qwik";
-import { LuX, LuChevronDown, LuFacebook, LuInstagram } from "@qwikest/icons/lucide";
+import { LuX, LuChevronDown, LuFacebook, LuInstagram, LuGlobe } from "@qwikest/icons/lucide";
 import { cn } from "@qwik-ui/utils";
 import { useLocation } from "@builder.io/qwik-city";
 import { Modal } from "../ui/Modal";
 import IconHamburger from "../icons/IconHamburger";
 import { buttonVariants } from "../ui/Button";
+import { useI18n, setLanguage as setLang, type Language } from "~/context/i18n";
 
 const CustomAccordion = component$(({ items, show }: { items: any[]; show: Signal<boolean> }) => {
   const openIndex = useSignal<number | null>(null);
@@ -134,6 +135,12 @@ const CustomAccordion = component$(({ items, show }: { items: any[]; show: Signa
 
 export default component$(() => {
   const show = useSignal(false);
+  const i18n = useI18n();
+
+  const handleSetLanguage = $((lang: Language) => {
+    i18n.locale.value = lang;
+    setLang(lang);
+  });
 
   const menuItems = [
       {
@@ -195,14 +202,15 @@ export default component$(() => {
   return (
     <>
       <Modal.Root bind:show={show}>
-        <div class="absolute top-2 right-3  md:static">
+        <div class="absolute top-2 right-3 md:static">
           <Modal.Trigger
             class={cn(
               "p-2 py-1 rounded-lg border backdrop-blur-sm transition-all duration-300",
-              "bg-primary-900/30 mb-1 border-primary-600/30 hover:shadow-xl hover:bg-primary-900/50"
+              "bg-stone-100/40 mb-1 border-stone-300/50 hover:shadow-xl hover:bg-stone-200/50",
+              "[&_svg]:stroke-stone-800"
             )}
           >
-            <IconHamburger class="w-6 h-7 text-primary-300" />
+            <IconHamburger class="w-6 h-7" />
           </Modal.Trigger>
         </div>
 
@@ -230,6 +238,37 @@ export default component$(() => {
           </nav>
 
           <div class="rounded-b-2xl border-t border-primary-800/30 bg-gradient-to-br from-primary-900/20 to-black/40 backdrop-blur-md pb-5">
+            {/* Language Selector */}
+            <div class="px-5 pt-4 pb-3 border-b border-primary-800/30">
+              <div class="flex items-center gap-2 mb-2">
+                <LuGlobe class="w-5 h-5 text-tertiary-400" />
+                <span class="text-sm font-medium text-tertiary-300">Language</span>
+              </div>
+              <div class="flex gap-2">
+                <button
+                  class={cn(
+                    "flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    i18n.locale.value === 'en'
+                      ? "bg-primary-600 text-white"
+                      : "bg-primary-900/30 text-tertiary-300 hover:bg-primary-900/50"
+                  )}
+                  onClick$={() => handleSetLanguage('en')}
+                >
+                  English
+                </button>
+                <button
+                  class={cn(
+                    "flex-1 px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    i18n.locale.value === 'fr'
+                      ? "bg-primary-600 text-white"
+                      : "bg-primary-900/30 text-tertiary-300 hover:bg-primary-900/50"
+                  )}
+                  onClick$={() => handleSetLanguage('fr')}
+                >
+                  Français
+                </button>
+              </div>
+            </div>
             <div class="sm:max-w-md px-5 pt-4 flex flex-row items-center justify-between gap-4 lg:justify-start lg:max-w-7xl">
               <div class="flex-shrink-0">
                 <a
@@ -242,7 +281,7 @@ export default component$(() => {
                 >
                   <span class="relative z-10 flex items-center gap-2">
                     Book A Class
-                   
+
                   </span>
                   <div class="absolute inset-0 bg-gradient-to-r from-primary-300/40 via-primary-200/30 to-primary-300/40 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </a>

@@ -74,15 +74,18 @@ export default component$(() => {
 
   return (
     <>
-      <div class="p-5 md:px-16 py-20 md:py-28 bg-gradient-to-b from-black via-tertiary-950 to-black max-w-7xl md:mx-auto">
+      <div class="p-5 md:px-16 py-20 md:py-28 bg-gradient-to-b from-stone-50 via-gray-50 to-stone-100 max-w-7xl md:mx-auto relative">
+        {/* Subtle grid overlay */}
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" aria-hidden="true"></div>
+
         {/* Header */}
-        <div class="text-center mb-12">
+        <div class="text-center mb-12 relative">
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-stone-700 via-stone-800 to-stone-700 bg-clip-text text-transparent">
               Featured Performances
             </span>
           </h2>
-          <p class="text-xl md:text-2xl text-tertiary-300 max-w-3xl mx-auto">
+          <p class="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto">
             Recent sessions, collaborations, and live performances
           </p>
         </div>
@@ -90,7 +93,7 @@ export default component$(() => {
         {/* Carousel */}
         {workshops.value.length === 0 ? (
           <div class="text-center py-12">
-            <p class="text-tertiary-300 text-lg">Loading performances...</p>
+            <p class="text-stone-500 text-lg">Loading performances...</p>
           </div>
         ) : (
           <Carousel.Root
@@ -112,7 +115,7 @@ export default component$(() => {
                     href={workshop.url || "/gallery"}
                     target={workshop.url ? "_blank" : "_self"}
                     rel="noopener noreferrer"
-                    class="group flex flex-col h-full bg-gradient-to-br from-tertiary-900/50 to-black border border-tertiary-800/50 rounded-2xl transition-all duration-300 hover:border-primary-600/50 hover:shadow-2xl hover:shadow-primary-900/20 cursor-pointer overflow-hidden block hover:scale-105"
+                    class="group flex flex-col h-full bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl transition-all duration-300 hover:border-amber-400/50 hover:shadow-xl cursor-pointer overflow-hidden block hover:scale-105"
                   >
                     <div class="relative overflow-hidden">
                       <img
@@ -121,25 +124,25 @@ export default component$(() => {
                         alt={workshop.name}
                       />
                       {/* Gradient overlay */}
-                      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                      <div class="absolute inset-0 bg-gradient-to-t from-stone-900/40 via-transparent to-transparent"></div>
 
                       {/* Play button overlay */}
                       <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border-2 border-white flex items-center justify-center">
-                          <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
+                        <div class="w-16 h-16 rounded-full bg-white/80 backdrop-blur-sm border-2 border-amber-400 flex items-center justify-center">
+                          <svg class="w-6 h-6 text-amber-600 ml-1" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"/>
                           </svg>
                         </div>
                       </div>
                     </div>
                     <div class="flex flex-col flex-1 p-5">
-                      <h3 class="text-xl font-bold text-white mb-3 line-clamp-2 group-hover:text-primary-300 transition-colors">
+                      <h3 class="text-xl font-bold text-stone-800 mb-3 line-clamp-2 group-hover:text-amber-700 transition-colors">
                         {workshop.name}
                       </h3>
-                      <p class="text-sm md:text-base text-tertiary-400 line-clamp-3 flex-1">
+                      <p class="text-sm md:text-base text-stone-500 line-clamp-3 flex-1">
                         {workshop.description}
                       </p>
-                      <div class="mt-4 flex items-center text-secondary-400 font-medium">
+                      <div class="mt-4 flex items-center text-amber-600 font-medium">
                         <span class="mr-2">Watch</span>
                         <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -155,14 +158,14 @@ export default component$(() => {
             <div class="flex items-center justify-end mt-8 gap-4">
               <Carousel.Pagination class="flex space-x-2">
                 {workshops.value.map((_, index) => (
-                  <Carousel.Bullet key={index} class="w-3 h-3 rounded-full bg-tertiary-700 hover:bg-primary-500 transition-colors [&.active]:bg-primary-500" />
+                  <Carousel.Bullet key={index} class="w-3 h-3 rounded-full bg-stone-300 hover:bg-amber-500 transition-colors [&.active]:bg-amber-500" />
                 ))}
               </Carousel.Pagination>
               <div class="flex gap-2">
-                <Carousel.Previous class="w-10 h-10 flex items-center justify-center rounded-full bg-tertiary-800/80 hover:bg-tertiary-700 text-white shadow-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+                <Carousel.Previous class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-stone-100 text-stone-700 border border-stone-200 shadow-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
                   <LuChevronLeft class="h-5 w-5" />
                 </Carousel.Previous>
-                <Carousel.Next class="w-10 h-10 flex items-center justify-center rounded-full bg-tertiary-800/80 hover:bg-tertiary-700 text-white shadow-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
+                <Carousel.Next class="w-10 h-10 flex items-center justify-center rounded-full bg-white/90 hover:bg-stone-100 text-stone-700 border border-stone-200 shadow-lg transition-all duration-200 disabled:opacity-30 disabled:cursor-not-allowed">
                   <LuChevronRight class="h-5 w-5" />
                 </Carousel.Next>
               </div>
@@ -171,11 +174,11 @@ export default component$(() => {
         )}
 
         {/* Booking Options Section */}
-        <div id="bookings" class="text-center mt-20 mb-12">
-          <h3 class="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div id="bookings" class="text-center mt-20 mb-12 relative">
+          <h3 class="text-3xl md:text-4xl font-bold text-stone-800 mb-4">
             Booking Options
           </h3>
-          <p class="text-xl md:text-2xl text-tertiary-300 max-w-3xl mx-auto mb-12">
+          <p class="text-xl md:text-2xl text-stone-600 max-w-3xl mx-auto mb-12">
             Whether it's a live event or a studio session, let's make music together
           </p>
 
@@ -183,7 +186,7 @@ export default component$(() => {
             {/* Live Performances */}
             <a
               href="/contact"
-              class="group flex flex-col bg-gradient-to-br from-tertiary-900/50 to-black border border-tertiary-800/50 rounded-2xl transition-all duration-300 hover:border-primary-600/50 hover:shadow-2xl hover:shadow-primary-900/20 cursor-pointer overflow-hidden hover:scale-105"
+              class="group flex flex-col bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl transition-all duration-300 hover:border-amber-400/50 hover:shadow-xl cursor-pointer overflow-hidden hover:scale-105"
             >
               <div class="h-56 w-full overflow-hidden relative">
                 <img
@@ -191,16 +194,16 @@ export default component$(() => {
                   alt="Live Performances"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-stone-900/10 to-transparent"></div>
               </div>
               <div class="flex flex-col flex-1 p-6">
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-300 transition-colors">
+                <h3 class="text-2xl font-bold text-stone-800 mb-3 group-hover:text-amber-700 transition-colors">
                   Live Performances
                 </h3>
-                <p class="text-base text-tertiary-400 mb-4">
+                <p class="text-base text-stone-500 mb-4">
                   Elevate your event with live violin. Perfect for weddings, corporate events, concerts, and special occasions. Professional, versatile, and unforgettable.
                 </p>
-                <div class="mt-auto flex items-center text-secondary-400 font-medium">
+                <div class="mt-auto flex items-center text-amber-600 font-medium">
                   <span class="mr-2">Book Now</span>
                   <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -212,7 +215,7 @@ export default component$(() => {
             {/* Studio Sessions */}
             <a
               href="/contact"
-              class="group flex flex-col bg-gradient-to-br from-tertiary-900/50 to-black border border-tertiary-800/50 rounded-2xl transition-all duration-300 hover:border-primary-600/50 hover:shadow-2xl hover:shadow-primary-900/20 cursor-pointer overflow-hidden hover:scale-105"
+              class="group flex flex-col bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl transition-all duration-300 hover:border-amber-400/50 hover:shadow-xl cursor-pointer overflow-hidden hover:scale-105"
             >
               <div class="h-56 w-full overflow-hidden relative">
                 <img
@@ -220,17 +223,17 @@ export default component$(() => {
                   alt="Studio Sessions"
                   class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 md:object-top lg:object-top"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-stone-900/60 via-stone-900/10 to-transparent"></div>
               </div>
 
               <div class="flex flex-col flex-1 p-6">
-                <h3 class="text-2xl font-bold text-white mb-3 group-hover:text-primary-300 transition-colors">
+                <h3 class="text-2xl font-bold text-stone-800 mb-3 group-hover:text-amber-700 transition-colors">
                   Studio Sessions
                 </h3>
-                <p class="text-base text-tertiary-400 mb-4">
+                <p class="text-base text-stone-500 mb-4">
                   High-quality violin recording for your albums, singles, and soundtracks. Fast turnaround, professional sound, and creative collaboration to bring your vision to life.
                 </p>
-                <div class="mt-auto flex items-center text-secondary-400 font-medium">
+                <div class="mt-auto flex items-center text-amber-600 font-medium">
                   <span class="mr-2">Book Now</span>
                   <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>

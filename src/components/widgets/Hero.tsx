@@ -1,5 +1,6 @@
 import { component$, useSignal, useVisibleTask$, useStyles$ } from "@builder.io/qwik";
 import { Image } from "@unpic/qwik";
+import MenuModal from "./MenuModal";
 
 export default component$(() => {
   const carouselIndex = useSignal(0);
@@ -62,7 +63,7 @@ export default component$(() => {
     .hero-carousel-container {
       position: relative;
       width: 100%;
-      min-height: 600px;
+      min-height: 920px;
       perspective: 1000px;
       touch-action: pan-y;
       user-select: none;
@@ -128,19 +129,17 @@ export default component$(() => {
     cleanup(() => clearInterval(interval));
   });
 
-  // Auto-advance hero cards carousel
+  // Auto-advance right column images, then advance hero card after full cycle
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
-      currentSlideIndex.value = (currentSlideIndex.value + 1) % heroCards.length;
-    }, 5000);
-    cleanup(() => clearInterval(interval));
-  });
+      const nextImageIndex = (rightColumnImageIndex.value + 1) % rightColumnImages.length;
+      rightColumnImageIndex.value = nextImageIndex;
 
-  // Auto-advance right column images
-  useVisibleTask$(({ cleanup }) => {
-    const interval = setInterval(() => {
-      rightColumnImageIndex.value = (rightColumnImageIndex.value + 1) % rightColumnImages.length;
-    }, 5000);
+      // When video carousel completes a full cycle (returns to 0), advance the hero card
+      if (nextImageIndex === 0) {
+        currentSlideIndex.value = (currentSlideIndex.value + 1) % heroCards.length;
+      }
+    }, 3000); // 3 seconds per image, so full cycle = 18 seconds before card changes
     cleanup(() => clearInterval(interval));
   });
 
@@ -157,9 +156,19 @@ export default component$(() => {
       {/* Subtle grid overlay */}
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" aria-hidden="true"></div>
 
-      <div class="relative z-10 container lg:-mt-28 mx-auto px-4 pt-8 pb-2 lg:py-8">
+      <div class="relative z-10 container lg:-mt-28 mx-auto px-3 pt-4 pb-2 lg:px-4 lg:py-8">
         {/* Mobile Layout - Card Stack */}
-        <div class="lg:hidden">
+        <div class="lg:hidden relative">
+          {/* Mobile Menu Button - positioned above card stack */}
+          <div class={`absolute top-4 right-2 z-50 [&_button]:transition-colors [&_button]:duration-300 ${
+            currentSlideIndex.value === 0
+              ? '[&_button]:border-stone-300'
+              : currentSlideIndex.value === 1
+                ? '[&_button]:border-amber-200'
+                : '[&_button]:border-orange-300'
+          }`}>
+            <MenuModal />
+          </div>
           <div
             class="hero-carousel-container"
             onTouchStart$={(e) => {
@@ -268,7 +277,7 @@ export default component$(() => {
                         {card.badge}
                       </span>
                     </div>
-                    <h1 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight mb-4">
+                    <h1 class="text-[2.625rem] md:text-5xl font-bold tracking-tight leading-tight mb-4">
                       <span class={`bg-gradient-to-r ${style.title} bg-clip-text text-transparent block`}>
                         {card.title[0]}
                       </span>
@@ -295,7 +304,8 @@ export default component$(() => {
                         Book Session
                       </a>
                     </div>
-                    <div class={`grid grid-cols-3 gap-4 mt-8 pt-6 border-t ${style.divider}`}>
+                    {/* Stats - commented out for now
+                    <div class={`grid grid-cols-3 gap-4 mt-6 pt-4 border-t ${style.divider}`}>
                       {card.stats.map((stat, idx) => (
                         <div key={idx} class="text-center">
                           <div class={`text-2xl font-bold ${style.statValue}`}>{stat.value}</div>
@@ -303,72 +313,61 @@ export default component$(() => {
                         </div>
                       ))}
                     </div>
+                    */}
 
-                    {/* Progress Bar */}
-                    {/* <div class="progress-bar">
-                      <div class="progress-fill"></div>
-                    </div> */}
+                    {/* Video Carousel inside card */}
+                    <div class={`mt-6 pt-4 border-t ${style.divider}`}>
+                    <div class={`rounded-xl overflow-hidden border ${style.border}`}>
+                      {/* Video/Image display */}
+                      <div class="relative aspect-video">
+                        {rightColumnImages.map((img, imgIdx) => (
+                          <div
+                            key={imgIdx}
+                            class={`absolute inset-0 transition-all duration-700 ${
+                              imgIdx === rightColumnImageIndex.value
+                                ? 'opacity-100 scale-100'
+                                : 'opacity-0 scale-110'
+                            }`}
+                          >
+                            <img
+                              src={img}
+                              alt={`Performance ${imgIdx + 1}`}
+                              class="w-full h-full object-cover"
+                            />
+                          </div>
+                        ))}
+                        {/* Play button overlay */}
+                        <div class="absolute inset-0 flex items-center justify-center bg-stone-900/20">
+                          <button class={`w-12 h-12 rounded-full bg-white/70 backdrop-blur-sm border-2 ${style.border} flex items-center justify-center hover:bg-white/90 transition-all duration-300 hover:scale-110`}>
+                            <svg class={`w-5 h-5 ${style.statValue} ml-0.5`} fill="currentColor" viewBox="0 0 24 24">
+                              <path d="M8 5v14l11-7z"/>
+                            </svg>
+                          </button>
+                        </div>
+                        {/* Gradient overlay */}
+                        <div class={`absolute inset-0 bg-gradient-to-t ${style.innerBg.replace('bg-', 'from-')}/40 via-transparent to-transparent pointer-events-none`}></div>
+                      </div>
+
+                      {/* Progress dots */}
+                      <div class={`p-2 ${style.innerBg} flex justify-center gap-1.5`}>
+                        {rightColumnImages.map((_, dotIdx) => (
+                          <button
+                            key={dotIdx}
+                            onClick$={() => { rightColumnImageIndex.value = dotIdx; }}
+                            class={`w-2 h-2 rounded-full transition-all duration-300 ${
+                              dotIdx === rightColumnImageIndex.value
+                                ? `w-6 ${style.statValue.replace('text-', 'bg-')}`
+                                : `${style.divider.replace('border-', 'bg-')}`
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                    </div>
                   </div>
                 </div>
               );
             })}
-          </div>
-
-          {/* Mobile Media Player Section */}
-          <div class="relative mt-3">
-            {/* Main media container */}
-            <div class="relative bg-gradient-to-br from-stone-100/95 to-stone-50/95 backdrop-blur-sm rounded-2xl border border-stone-300/60 shadow-2xl overflow-hidden">
-              {/* Video/Image display */}
-              <div class="relative aspect-video">
-                <img
-                  src={rightColumnImages[rightColumnImageIndex.value]}
-                  alt="Performance"
-                  class="w-full h-full object-cover"
-                />
-                {/* Play button overlay */}
-                <div class="absolute inset-0 flex items-center justify-center bg-stone-900/20">
-                  <button class="w-16 h-16 rounded-full bg-white/70 backdrop-blur-sm border-2 border-stone-500 flex items-center justify-center hover:bg-white/90 transition-all duration-300 hover:scale-110">
-                    <svg class="w-8 h-8 text-stone-700 ml-1" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="M8 5v14l11-7z"/>
-                    </svg>
-                  </button>
-                </div>
-                {/* Gradient overlay */}
-                <div class="absolute inset-0 bg-gradient-to-t from-stone-100/40 via-transparent to-transparent pointer-events-none"></div>
-              </div>
-
-              {/* Media info bar */}
-              <div class="p-4 border-t border-stone-300/50">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <h3 class="text-stone-800 font-semibold text-sm">Latest Performance</h3>
-                    <p class="text-stone-500 text-xs">Live Session Recording</p>
-                  </div>
-                  <div class="flex gap-2">
-                    <button
-                      onClick$={() => {
-                        rightColumnImageIndex.value = (rightColumnImageIndex.value - 1 + rightColumnImages.length) % rightColumnImages.length;
-                      }}
-                      class="w-8 h-8 rounded-full bg-stone-200/70 hover:bg-stone-300 flex items-center justify-center text-stone-700 transition-colors"
-                    >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
-                      </svg>
-                    </button>
-                    <button
-                      onClick$={() => {
-                        rightColumnImageIndex.value = (rightColumnImageIndex.value + 1) % rightColumnImages.length;
-                      }}
-                      class="w-8 h-8 rounded-full bg-stone-200/70 hover:bg-stone-300 flex items-center justify-center text-stone-700 transition-colors"
-                    >
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
         </div>
@@ -583,25 +582,6 @@ export default component$(() => {
             })}
           </div>
 
-          {/* Carousel Indicators - Centered box */}
-          <div class="absolute bottom-[-90px] left-1/2 -translate-x-1/2 z-50 bg-gradient-to-br from-stone-100/95 via-gray-50/95 to-stone-50/95 backdrop-blur-md border-2 border-stone-300/60 shadow-2xl px-8 py-3 rounded-full">
-            <div class="flex justify-center gap-3">
-              {heroCards.map((_, index) => (
-                <button
-                  key={index}
-                  onClick$={() => {
-                    currentSlideIndex.value = index;
-                  }}
-                  class={`transition-all duration-300 rounded-full ${
-                    currentSlideIndex.value === index
-                      ? 'w-12 h-3 bg-gradient-to-r from-stone-600 to-stone-500'
-                      : 'w-3 h-3 bg-stone-400/40 hover:bg-stone-400/60'
-                  }`}
-                  aria-label={`Go to slide ${index + 1}`}
-                />
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 

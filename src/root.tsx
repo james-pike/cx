@@ -2,7 +2,6 @@ import { component$, useStyles$ } from "@builder.io/qwik";
 import { QwikCityProvider, RouterOutlet, ServiceWorkerRegister } from "@builder.io/qwik-city";
 import { RouterHead } from "~/components/common/RouterHead";
 import styles from "~/assets/styles/global.css?inline";
-import Header from "./components/widgets/Header";
 import PersistentPlayer from "./components/widgets/PersistentPlayer";
 
 export default component$(() => {
@@ -46,7 +45,6 @@ export default component$(() => {
         <link rel="preload" href="/images/logo2-cropped.svg" as="image" type="image/svg+xml" />
       </head>
       <body class="antialiased bg-black pb-20">
-        <Header />
         <div class="relative md:border-x md:border-tertiary-800/50 mx-auto max-w-7xl overflow-x-hidden">
           {/* Dark mode background layers */}
           <div class="absolute inset-0 z-[-1] bg-gradient-to-br from-primary-950 via-black to-tertiary-950" aria-hidden="true"></div>

@@ -46,20 +46,23 @@ export default component$(() => {
   ];
 
   return (
-    <section class="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-black via-tertiary-950 to-black">
+    <section class="relative overflow-hidden py-20 md:py-28 bg-gradient-to-b from-gray-50 via-stone-50 to-gray-50">
       {/* Background decorations */}
-      <div class="absolute top-1/4 left-10 w-64 h-64 bg-primary-900/10 rounded-full blur-3xl"></div>
-      <div class="absolute bottom-1/4 right-10 w-64 h-64 bg-secondary-900/10 rounded-full blur-3xl"></div>
+      <div class="absolute top-1/4 left-10 w-64 h-64 bg-amber-200/20 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-1/4 right-10 w-64 h-64 bg-stone-300/20 rounded-full blur-3xl"></div>
+
+      {/* Subtle grid overlay */}
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" aria-hidden="true"></div>
 
       <div class="relative max-w-7xl mx-auto px-5 md:px-12">
         {/* Section Header */}
         <div class="text-center mb-16">
           <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            <span class="bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500 bg-clip-text text-transparent">
+            <span class="bg-gradient-to-r from-stone-700 via-stone-800 to-stone-700 bg-clip-text text-transparent">
               What I Do
             </span>
           </h2>
-          <p class="text-xl text-tertiary-300 max-w-3xl mx-auto">
+          <p class="text-xl text-stone-600 max-w-3xl mx-auto">
             From intimate studio sessions to grand live performances, I bring versatility and passion to every project.
           </p>
         </div>
@@ -70,25 +73,25 @@ export default component$(() => {
             <a
               key={index}
               href={service.link}
-              class="group relative bg-gradient-to-br from-tertiary-900/50 to-black border border-tertiary-800/50 rounded-2xl p-8 hover:border-primary-600/50 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-primary-900/20"
+              class="group relative bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl p-8 hover:border-amber-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl"
             >
               {/* Icon */}
-              <div class="mb-6 text-secondary-400 group-hover:text-secondary-300 transition-colors">
+              <div class="mb-6 text-amber-600 group-hover:text-amber-500 transition-colors">
                 {service.icon}
               </div>
 
               {/* Title */}
-              <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-primary-300 transition-colors">
+              <h3 class="text-2xl font-bold text-stone-800 mb-4 group-hover:text-amber-700 transition-colors">
                 {service.title}
               </h3>
 
               {/* Description */}
-              <p class="text-tertiary-400 leading-relaxed mb-4">
+              <p class="text-stone-500 leading-relaxed mb-4">
                 {service.description}
               </p>
 
               {/* Hover arrow */}
-              <div class="flex items-center text-primary-400 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+              <div class="flex items-center text-amber-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
                 <span class="mr-2">Learn more</span>
                 <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -96,7 +99,7 @@ export default component$(() => {
               </div>
 
               {/* Gradient overlay on hover */}
-              <div class="absolute inset-0 bg-gradient-to-br from-primary-900/0 to-primary-900/0 group-hover:from-primary-900/10 group-hover:to-transparent rounded-2xl transition-all duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-br from-amber-50/0 to-amber-50/0 group-hover:from-amber-50/50 group-hover:to-transparent rounded-2xl transition-all duration-300"></div>
             </a>
           ))}
         </div>

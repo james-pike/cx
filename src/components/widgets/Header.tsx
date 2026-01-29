@@ -1,20 +1,21 @@
-import { component$, useStore, useVisibleTask$, useSignal } from "@builder.io/qwik";
+import { component$, useStore, useVisibleTask$, useSignal, $ } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 import IconChevronDown from "../icons/IconChevronDown";
 import MenuModal from "./MenuModal";
 import { useBannerLoader } from "~/routes/layout";
-import { 
-  LuUsers, 
-  LuImage, 
-  LuHome, 
-  LuEye, 
-  LuNewspaper, 
+import { useI18n, setLanguage as setLang, type Language } from "~/context/i18n";
+import {
+  LuUsers,
+  LuImage,
+  LuHome,
+  LuEye,
+  LuNewspaper,
   LuHelpCircle,
   LuCalendarDays,
   LuBuilding2,
   LuPartyPopper,
   LuGift,
-  
+  LuGlobe,
   LuCuboid,
 } from "@qwikest/icons/lucide";
 
@@ -33,6 +34,16 @@ export default component$(() => {
   const hasBannerMessages = useSignal<boolean>(false);
 
   const currentMessageIndex = useSignal(0);
+
+  // Language dropdown state
+  const showLangDropdown = useSignal(false);
+  const i18n = useI18n();
+
+  const handleSetLanguage = $((lang: Language) => {
+    i18n.locale.value = lang;
+    setLang(lang);
+    showLangDropdown.value = false;
+  });
 
   useVisibleTask$(() => {
     const mediaQuery = window.matchMedia("(max-width: 767px)");
@@ -115,6 +126,7 @@ export default component$(() => {
       {(hasBannerMessages.value ?? false) && (
         <div
           class={`
+            lg:hidden
             bg-primary-200/70 max-w-7xl md:mx-auto px-0.5
              shadow-sm
             transition-all duration-100 ease-in-out
@@ -436,7 +448,35 @@ export default component$(() => {
             ) : null}
           </nav>
           {/* FIXED: Simplified button container - no more fixed/bottom positioning */}
-          <div class="hidden md:flex items-center justify-end space-x-2">
+          <div class="hidden md:flex items-center justify-end space-x-3">
+            {/* Language Dropdown */}
+            <div class="relative">
+              <button
+                class="flex items-center gap-1.5 px-3 py-2 text-stone-700 hover:text-amber-700 rounded-lg hover:bg-amber-100/50 transition-all duration-200"
+                onClick$={() => showLangDropdown.value = !showLangDropdown.value}
+                onBlur$={() => setTimeout(() => showLangDropdown.value = false, 150)}
+              >
+                <LuGlobe class="w-5 h-5" />
+                <span class="text-sm font-medium uppercase">{i18n.locale.value}</span>
+                <IconChevronDown class={`w-3 h-3 transition-transform duration-200 ${showLangDropdown.value ? 'rotate-180' : ''}`} />
+              </button>
+              {showLangDropdown.value && (
+                <div class="absolute right-0 top-full mt-1 bg-white/95 backdrop-blur-md border border-stone-200 rounded-lg shadow-lg overflow-hidden z-50 min-w-[120px]">
+                  <button
+                    class={`w-full px-4 py-2 text-left text-sm hover:bg-amber-100/50 transition-colors ${i18n.locale.value === 'en' ? 'text-amber-700 font-semibold bg-amber-50' : 'text-stone-700'}`}
+                    onClick$={() => handleSetLanguage('en')}
+                  >
+                    English
+                  </button>
+                  <button
+                    class={`w-full px-4 py-2 text-left text-sm hover:bg-amber-100/50 transition-colors ${i18n.locale.value === 'fr' ? 'text-amber-700 font-semibold bg-amber-50' : 'text-stone-700'}`}
+                    onClick$={() => handleSetLanguage('fr')}
+                  >
+                    Français
+                  </button>
+                </div>
+              )}
+            </div>
             <a
               href="https://bookeo.com/earthenvessels"
               target="_blank"
