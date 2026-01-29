@@ -17,9 +17,23 @@ export default component$(() => {
     "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&q=80"
   ];
 
-  const rightColumnImages = [
-    "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80",
-    "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
+  // Different videos for each card
+  const cardVideos = [
+    // Card 1: Studio Sessions
+    [
+      "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80",
+      "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
+    ],
+    // Card 2: Session Violinist
+    [
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
+      "https://images.unsplash.com/photo-1524650359799-842906ca1c06?w=800&q=80"
+    ],
+    // Card 3: Live Performances
+    [
+      "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=800&q=80",
+      "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80"
+    ]
   ];
 
   const heroCards = [
@@ -128,7 +142,8 @@ export default component$(() => {
   // Auto-advance right column images, then advance hero card after full cycle
   useVisibleTask$(({ cleanup }) => {
     const interval = setInterval(() => {
-      const nextImageIndex = (rightColumnImageIndex.value + 1) % rightColumnImages.length;
+      const videosPerCard = cardVideos[0].length; // All cards have same number of videos
+      const nextImageIndex = (rightColumnImageIndex.value + 1) % videosPerCard;
       rightColumnImageIndex.value = nextImageIndex;
 
       // When video carousel completes a full cycle (returns to 0), advance the hero card
@@ -152,7 +167,7 @@ export default component$(() => {
       {/* Subtle grid overlay */}
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:4rem_4rem]" aria-hidden="true"></div>
 
-      <div class="relative z-10 container lg:-mt-28 mx-auto px-2 pt-2 pb-2 lg:px-4 lg:py-8">
+      <div class="relative z-10 container lg:-mt-28 mx-auto px-2.5 pt-3 pb-2 lg:px-4 lg:py-8">
         {/* Mobile Layout - Card Stack */}
         <div class="lg:hidden relative">
           {/* Mobile Menu Button - positioned above card stack */}
@@ -316,7 +331,7 @@ export default component$(() => {
                     <div class={`rounded-xl overflow-hidden border ${style.border}`}>
                       {/* Video/Image display */}
                       <div class="relative aspect-video">
-                        {rightColumnImages.map((img, imgIdx) => (
+                        {cardVideos[index].map((img, imgIdx) => (
                           <div
                             key={imgIdx}
                             class={`absolute inset-0 transition-all duration-700 ${
@@ -344,14 +359,14 @@ export default component$(() => {
                         <div class="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none"></div>
                         {/* Progress dots - overlayed at bottom */}
                         <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                          {rightColumnImages.map((_, dotIdx) => (
+                          {cardVideos[index].map((_, dotIdx) => (
                             <button
                               key={dotIdx}
                               onClick$={() => { rightColumnImageIndex.value = dotIdx; }}
-                              class={`h-2 rounded-full transition-all duration-300 ${
+                              class={`w-2 h-2 rounded-full transition-all duration-300 ${
                                 dotIdx === rightColumnImageIndex.value
-                                  ? 'w-6 bg-white'
-                                  : 'w-2 bg-white/50'
+                                  ? 'bg-white'
+                                  : 'bg-white/50'
                               }`}
                             />
                           ))}
