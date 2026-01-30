@@ -44,14 +44,14 @@ export default component$(() => {
         <link rel="preload" href="/images/logo22.svg" as="image" type="image/svg+xml" />
         <link rel="preload" href="/images/logo2-cropped.svg" as="image" type="image/svg+xml" />
       </head>
-      <body class="antialiased bg-black pb-20">
-        <div class="relative md:border-x md:border-tertiary-800/50 mx-auto max-w-7xl overflow-x-hidden">
-          {/* Dark mode background layers */}
-          <div class="absolute inset-0 z-[-1] bg-gradient-to-br from-primary-950 via-black to-tertiary-950" aria-hidden="true"></div>
-          <div class="absolute inset-0 z-[-1] bg-gradient-to-t from-tertiary-950/40 via-black/50 to-primary-950/60" aria-hidden="true"></div>
-          <div class="absolute top-0 left-5 w-[700px] h-[800px] z-[-1] bg-primary-900/10 rounded-full blur-xl animate-float" aria-hidden="true"></div>
-          <div class="absolute top-0 right-0 w-[800px] h-[800px] z-[-1] bg-tertiary-900/10 rounded-full blur-xl animate-float" aria-hidden="true"></div>
-          <div class="absolute top-5 md:left-[650px] w-[490px] h-[80px] z-[-1] bg-secondary-900/10 rounded-full blur-xl animate-float" aria-hidden="true"></div>
+      <body class="antialiased bg-gradient-to-b from-gray-50 via-stone-50 to-gray-50 pb-20">
+        <div class="relative md:border-x md:border-stone-200/50 mx-auto max-w-7xl overflow-x-hidden">
+          {/* Light mode background layers */}
+          <div class="absolute inset-0 z-[-1] bg-gradient-to-br from-stone-50 via-[#F8F6F2] to-gray-50" aria-hidden="true"></div>
+          <div class="absolute inset-0 z-[-1] bg-gradient-to-t from-stone-100/40 via-[#F8F6F2]/50 to-gray-50/60" aria-hidden="true"></div>
+          <div class="absolute top-0 left-5 w-[700px] h-[800px] z-[-1] bg-amber-200/20 rounded-full blur-xl animate-float" aria-hidden="true"></div>
+          <div class="absolute top-0 right-0 w-[800px] h-[800px] z-[-1] bg-stone-300/20 rounded-full blur-xl animate-float" aria-hidden="true"></div>
+          <div class="absolute top-5 md:left-[650px] w-[490px] h-[80px] z-[-1] bg-amber-100/30 rounded-full blur-xl animate-float" aria-hidden="true"></div>
           <RouterOutlet />
         </div>
         <PersistentPlayer />

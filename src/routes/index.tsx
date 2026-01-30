@@ -3,16 +3,12 @@ import { type DocumentHead } from "@builder.io/qwik-city";
 import { SITE } from "~/config.mjs";
 import Hero from "~/components/widgets/Hero";
 import LandingCards from "~/components/LandingCards";
-import ClassesCarousel from "~/components/widgets/ClassesCarousel";
 
 export default component$(() => {
   return (
     <>
       <div class="bg-gradient-to-br from-stone-100 via-gray-50 to-stone-50">
         <Hero />
-
-        {/* Featured Performances Carousel */}
-        <ClassesCarousel />
 
         {/* Services Section */}
         <LandingCards />
