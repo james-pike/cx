@@ -9,6 +9,9 @@ export default component$(() => {
   const rightColumnImageIndex = useSignal(0);
   const touchStartX = useSignal(0);
   const touchEndX = useSignal(0);
+  // Separate touch tracking for video carousel
+  const videoTouchStartX = useSignal(0);
+  const videoTouchEndX = useSignal(0);
 
   const carouselImages = [
     "https://images.unsplash.com/photo-1511379938547-c1f69419868d?w=800&q=80",
@@ -19,15 +22,15 @@ export default component$(() => {
 
   // Different videos for each card
   const cardVideos = [
-    // Card 1: Studio Sessions
+    // Card 1: Studio Sessions (Polishing Every Recording)
     [
       "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80",
-      "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
-    ],
-    // Card 2: Session Violinist
-    [
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
       "https://images.unsplash.com/photo-1524650359799-842906ca1c06?w=800&q=80"
+    ],
+    // Card 2: Session Violinist (Crafting Musical Moments)
+    [
+      "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80",
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80"
     ],
     // Card 3: Live Performances
     [
@@ -328,7 +331,37 @@ export default component$(() => {
 
                     {/* Video Carousel inside card */}
                     <div class={`mt-6 pt-4 border-t ${style.divider}`}>
-                    <div class={`rounded-xl overflow-hidden border ${style.border}`}>
+                    <div
+                      class={`rounded-xl overflow-hidden border ${style.border}`}
+                      onTouchStart$={(e) => {
+                        e.stopPropagation();
+                        videoTouchStartX.value = e.touches[0].clientX;
+                        videoTouchEndX.value = e.touches[0].clientX;
+                      }}
+                      onTouchMove$={(e) => {
+                        e.stopPropagation();
+                        videoTouchEndX.value = e.touches[0].clientX;
+                      }}
+                      onTouchEnd$={(e) => {
+                        e.stopPropagation();
+                        const swipeThreshold = 50;
+                        const diff = videoTouchStartX.value - videoTouchEndX.value;
+                        const videosPerCard = cardVideos[0].length;
+
+                        if (Math.abs(diff) > swipeThreshold) {
+                          if (diff > 0) {
+                            // Swipe left - next video
+                            rightColumnImageIndex.value = (rightColumnImageIndex.value + 1) % videosPerCard;
+                          } else {
+                            // Swipe right - previous video
+                            rightColumnImageIndex.value = (rightColumnImageIndex.value - 1 + videosPerCard) % videosPerCard;
+                          }
+                        }
+
+                        videoTouchStartX.value = 0;
+                        videoTouchEndX.value = 0;
+                      }}
+                    >
                       {/* Video/Image display */}
                       <div class="relative aspect-video">
                         {cardVideos[index].map((img, imgIdx) => (
