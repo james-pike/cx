@@ -2,7 +2,7 @@ import { component$, useSignal, useVisibleTask$, useStyles$, $ } from "@builder.
 import { Image } from "@unpic/qwik";
 import { menuItems } from "./MenuModal";
 import IconHamburger from "../icons/IconHamburger";
-import { LuX, LuChevronRight, LuMapPin, LuMail, LuClock } from "@qwikest/icons/lucide";
+import { LuX, LuChevronRight, LuMapPin, LuMail, LuClock, LuFacebook, LuInstagram } from "@qwikest/icons/lucide";
 
 type FlipTarget = 'none' | 'menu' | 'portfolio' | 'booking';
 
@@ -530,7 +530,7 @@ export default component$(() => {
                               </div>
 
                               {/* Navigation */}
-                              <nav class="space-y-1 max-h-[50vh] overflow-y-auto pr-2">
+                              <nav class="space-y-1 max-h-[45vh] overflow-y-auto pr-2">
                                 {menuItems.map((item, menuIdx) => (
                                   <div key={menuIdx}>
                                     {item.hasSubmenu ? (
@@ -539,10 +539,10 @@ export default component$(() => {
                                           onClick$={() => {
                                             menuOpenIndex.value = menuOpenIndex.value === menuIdx ? null : menuIdx;
                                           }}
-                                          class={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left font-medium ${style.description} hover:${style.innerBg} transition-colors`}
+                                          class={`w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-left text-lg font-medium ${style.description} hover:${style.innerBg} transition-colors`}
                                         >
                                           <span>{item.title}</span>
-                                          <LuChevronRight class={`w-4 h-4 transition-transform ${menuOpenIndex.value === menuIdx ? 'rotate-90' : ''}`} />
+                                          <LuChevronRight class={`w-5 h-5 transition-transform ${menuOpenIndex.value === menuIdx ? 'rotate-90' : ''}`} />
                                         </button>
                                         {menuOpenIndex.value === menuIdx && (
                                           <div class="pl-4 space-y-1 mt-1">
@@ -550,7 +550,7 @@ export default component$(() => {
                                               <a
                                                 key={subitem.title}
                                                 href={subitem.href}
-                                                class={`block px-3 py-2 rounded-lg text-sm ${style.statLabel} hover:${style.innerBg} transition-colors`}
+                                                class={`block px-3 py-2 rounded-lg text-base ${style.statLabel} hover:${style.innerBg} transition-colors`}
                                               >
                                                 {subitem.title}
                                               </a>
@@ -561,7 +561,7 @@ export default component$(() => {
                                     ) : (
                                       <a
                                         href={item.href}
-                                        class={`block px-3 py-2.5 rounded-lg font-medium ${style.description} hover:${style.innerBg} transition-colors`}
+                                        class={`block px-3 py-2.5 rounded-lg text-lg font-medium ${style.description} hover:${style.innerBg} transition-colors`}
                                       >
                                         {item.title}
                                       </a>
@@ -569,6 +569,26 @@ export default component$(() => {
                                   </div>
                                 ))}
                               </nav>
+
+                              {/* Social Links */}
+                              <div class={`mt-4 pt-4 border-t ${style.divider} flex justify-center gap-6`}>
+                                <a
+                                  href="https://www.facebook.com/p/earthen-vessels-61562702795370/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-3 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <LuFacebook class="w-6 h-6" />
+                                </a>
+                                <a
+                                  href="https://www.instagram.com/earthenvesselspottery_/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-3 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <LuInstagram class="w-6 h-6" />
+                                </a>
+                              </div>
 
                               {/* Book CTA */}
                               <div class={`mt-4 pt-4 border-t ${style.divider}`}>
