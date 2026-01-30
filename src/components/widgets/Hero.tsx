@@ -567,7 +567,7 @@ export default component$(() => {
                     <div class={`relative bg-gradient-to-br ${ds.rightBg} backdrop-blur-md border-2 border-l-0 ${ds.rightBorder} rounded-r-2xl p-8 flex items-center justify-center`}>
                       <div class={`absolute inset-0 ${ds.rightInner} -z-10 rounded-r-2xl`}></div>
                       <div class={`relative border-2 ${ds.imageBorder} rounded-xl overflow-hidden w-full aspect-square shadow-2xl`}>
-                        {rightColumnImages.map((img, idx) => (
+                        {cardVideos[index].map((img, idx) => (
                           <div
                             key={idx}
                             class={`absolute inset-0 transition-all duration-700 ${
