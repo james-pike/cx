@@ -27,8 +27,6 @@ export default component$(() => {
       items: [
         { title: "Our Space", href: "/about" },
         { title: "What To Expect", href: "/about#what-to-expect" },
-        { title: "Benefits Of Clay", href: "/about#clay" },
-        { title: "Our Logo", href: "/team#logo" },
 
         { title: "Gallery", href: "/gallery" },
         { title: "FAQs", href: "/faq" },
@@ -39,10 +37,8 @@ export default component$(() => {
       items: [
                 { title: "Facilitators", href: "/team" },
 
-        { title: "Classes & Workshops", href: "/offerings" },
                         { title: "Corporate Events", href: "/offerings#events" },
 
-        { title: "Community", href: "/community" },
 
         { title: "Reviews", href: "/reviews" },
         { title: "Contact", href: "/contact" },
@@ -56,11 +52,7 @@ export default component$(() => {
           href: "mailto:hello@earthenvessels.ca",
           icon: LuMail,
         },
-        {
-          title: "Hours: By appointment",
-          href: null,
-          icon: LuClock,
-        },
+  
         {
           title: (
             <span class="block leading-tight">
