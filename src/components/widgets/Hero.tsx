@@ -27,15 +27,15 @@ export default component$(() => {
       "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800&q=80",
       "https://images.unsplash.com/photo-1524650359799-842906ca1c06?w=800&q=80"
     ],
-    // Card 2: Session Violinist (Crafting Musical Moments)
-    [
-      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
-      "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
-    ],
-    // Card 3: Live Performances
+    // Card 2: Live Performances
     [
       "https://images.unsplash.com/photo-1485579149621-3123dd979885?w=800&q=80",
       "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?w=800&q=80"
+    ],
+    // Card 3: Session Violinist (Crafting Musical Moments)
+    [
+      "https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=800&q=80",
+      "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?w=800&q=80"
     ]
   ];
 
@@ -51,16 +51,6 @@ export default component$(() => {
       ]
     },
     {
-      badge: "Session Violinist",
-      title: ["Crafting", "Musical", "Moments"],
-      description: "Bringing soul and precision to every recording session and live performance we create.",
-      stats: [
-        { value: "50+", label: "Sessions" },
-        { value: "15+", label: "Albums" },
-        { value: "10+", label: "Years" }
-      ]
-    },
-    {
       badge: "Live Performances",
       title: ["Creating", "Unforgettable", "Experiences"],
       description: "From intimate venues to grand stages, delivering performances that truly resonate.",
@@ -68,6 +58,16 @@ export default component$(() => {
         { value: "30+", label: "Concerts" },
         { value: "10+", label: "Venues" },
         { value: "5+", label: "Cities" }
+      ]
+    },
+    {
+      badge: "Session Violinist",
+      title: ["Crafting", "Musical", "Moments"],
+      description: "Bringing soul and precision to every recording session and live performance we create.",
+      stats: [
+        { value: "50+", label: "Sessions" },
+        { value: "15+", label: "Albums" },
+        { value: "10+", label: "Years" }
       ]
     }
   ];
@@ -236,7 +236,7 @@ export default component$(() => {
                 {
                   bg: "from-stone-100/95 to-stone-50/95",
                   innerBg: "bg-stone-50/90",
-                  border: "border-stone-400",
+                  border: "border-stone-400/60",
                   badge: "bg-stone-100/70 border-stone-300/50 text-stone-600",
                   title: "from-gray-900 via-gray-800 to-gray-900",
                   titleLast: "text-gray-900",
@@ -247,26 +247,11 @@ export default component$(() => {
                   divider: "border-stone-200/50",
                   description: "text-stone-600"
                 },
-                // Card 2: Soft cream/yellow - with black headline (Session Violinist)
-                {
-                  bg: "from-amber-50/90 to-stone-50/90",
-                  innerBg: "bg-amber-50/80",
-                  border: "border-amber-400",
-                  badge: "bg-amber-100/50 border-amber-200/40 text-amber-600",
-                  title: "from-gray-900 via-gray-800 to-gray-900",
-                  titleLast: "text-gray-900",
-                  button: "from-amber-100 to-amber-200 hover:from-amber-200 hover:to-amber-300 shadow-amber-100/20 text-amber-700",
-                  buttonOutline: "border-amber-200 text-amber-500 hover:bg-amber-100/30",
-                  statValue: "text-amber-500",
-                  statLabel: "text-amber-400/70",
-                  divider: "border-amber-200/40",
-                  description: "text-stone-600"
-                },
-                // Card 3: Soft tan/warm beige - with black headline (Live Performances)
+                // Card 2: Soft tan/warm beige - with black headline (Live Performances)
                 {
                   bg: "from-orange-50/95 to-amber-50/95",
                   innerBg: "bg-orange-50/90",
-                  border: "border-orange-400",
+                  border: "border-orange-400/60",
                   badge: "bg-orange-100/70 border-orange-300/50 text-orange-700",
                   title: "from-gray-900 via-gray-800 to-gray-900",
                   titleLast: "text-gray-900",
@@ -275,6 +260,21 @@ export default component$(() => {
                   statValue: "text-orange-600",
                   statLabel: "text-orange-500/70",
                   divider: "border-orange-200/50",
+                  description: "text-stone-600"
+                },
+                // Card 3: Soft cream/yellow - with black headline (Session Violinist)
+                {
+                  bg: "from-amber-50/90 to-stone-50/90",
+                  innerBg: "bg-amber-50/80",
+                  border: "border-amber-400/60",
+                  badge: "bg-amber-100/50 border-amber-200/40 text-amber-600",
+                  title: "from-gray-900 via-gray-800 to-gray-900",
+                  titleLast: "text-gray-900",
+                  button: "from-amber-100 to-amber-200 hover:from-amber-200 hover:to-amber-300 shadow-amber-100/20 text-amber-700",
+                  buttonOutline: "border-amber-200 text-amber-500 hover:bg-amber-100/30",
+                  statValue: "text-amber-500",
+                  statLabel: "text-amber-400/70",
+                  divider: "border-amber-200/40",
                   description: "text-stone-600"
                 }
               ];
@@ -473,11 +473,11 @@ export default component$(() => {
                   cardBg: "bg-stone-50",
                   leftBg: "from-stone-100/95 to-stone-50/95",
                   leftInner: "bg-stone-50/90",
-                  leftBorder: "border-stone-400",
+                  leftBorder: "border-stone-400/60",
                   rightBg: "from-stone-50/95 to-stone-100/95",
                   rightInner: "bg-stone-100/90",
-                  rightBorder: "border-stone-400",
-                  imageBorder: "border-stone-400",
+                  rightBorder: "border-stone-400/60",
+                  imageBorder: "border-stone-400/60",
                   badge: "bg-stone-100/70 border-stone-300/50 text-stone-600",
                   title: "from-gray-900 via-gray-800 to-gray-900",
                   titleMiddle: "text-gray-900",
@@ -489,37 +489,16 @@ export default component$(() => {
                   statLabel: "text-stone-500/70",
                   divider: "border-stone-200/50"
                 },
-                // Card 2: Soft cream/yellow - with black headline (Session Violinist)
-                {
-                  cardBg: "bg-amber-50/80",
-                  leftBg: "from-amber-50/90 to-stone-50/90",
-                  leftInner: "bg-amber-50/80",
-                  leftBorder: "border-amber-400",
-                  rightBg: "from-stone-50/90 to-amber-50/90",
-                  rightInner: "bg-amber-50/80",
-                  rightBorder: "border-amber-400",
-                  imageBorder: "border-amber-400",
-                  badge: "bg-amber-100/50 border-amber-200/40 text-amber-600",
-                  title: "from-gray-900 via-gray-800 to-gray-900",
-                  titleMiddle: "text-gray-900",
-                  titleLast: "text-gray-900",
-                  description: "text-stone-600",
-                  button: "from-amber-100 to-amber-200 hover:from-amber-200 hover:to-amber-300 shadow-amber-100/20 text-amber-700",
-                  buttonOutline: "border-amber-200 text-amber-500 hover:bg-amber-100/30",
-                  statValue: "text-amber-500",
-                  statLabel: "text-amber-400/70",
-                  divider: "border-amber-200/40"
-                },
-                // Card 3: Soft tan/warm beige - with black headline (Live Performances)
+                // Card 2: Soft tan/warm beige - with black headline (Live Performances)
                 {
                   cardBg: "bg-orange-50",
                   leftBg: "from-orange-50/95 to-amber-50/95",
                   leftInner: "bg-orange-50/90",
-                  leftBorder: "border-orange-400",
+                  leftBorder: "border-orange-400/60",
                   rightBg: "from-amber-50/95 to-orange-50/95",
                   rightInner: "bg-amber-50/90",
-                  rightBorder: "border-orange-400",
-                  imageBorder: "border-orange-400",
+                  rightBorder: "border-orange-400/60",
+                  imageBorder: "border-orange-400/60",
                   badge: "bg-orange-100/70 border-orange-300/50 text-orange-700",
                   title: "from-gray-900 via-gray-800 to-gray-900",
                   titleMiddle: "text-gray-900",
@@ -530,6 +509,27 @@ export default component$(() => {
                   statValue: "text-orange-600",
                   statLabel: "text-orange-500/70",
                   divider: "border-orange-200/50"
+                },
+                // Card 3: Soft cream/yellow - with black headline (Session Violinist)
+                {
+                  cardBg: "bg-amber-50/80",
+                  leftBg: "from-amber-50/90 to-stone-50/90",
+                  leftInner: "bg-amber-50/80",
+                  leftBorder: "border-amber-400/60",
+                  rightBg: "from-stone-50/90 to-amber-50/90",
+                  rightInner: "bg-amber-50/80",
+                  rightBorder: "border-amber-400/60",
+                  imageBorder: "border-amber-400/60",
+                  badge: "bg-amber-100/50 border-amber-200/40 text-amber-600",
+                  title: "from-gray-900 via-gray-800 to-gray-900",
+                  titleMiddle: "text-gray-900",
+                  titleLast: "text-gray-900",
+                  description: "text-stone-600",
+                  button: "from-amber-100 to-amber-200 hover:from-amber-200 hover:to-amber-300 shadow-amber-100/20 text-amber-700",
+                  buttonOutline: "border-amber-200 text-amber-500 hover:bg-amber-100/30",
+                  statValue: "text-amber-500",
+                  statLabel: "text-amber-400/70",
+                  divider: "border-amber-200/40"
                 }
               ];
 

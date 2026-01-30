@@ -46,7 +46,7 @@ export default component$(() => {
   ];
 
   return (
-    <section class="relative overflow-hidden py-10 md:py-28 bg-gradient-to-b from-gray-50 via-stone-50 to-gray-50">
+    <section class="relative overflow-hidden py-7 md:py-28 bg-gradient-to-b from-gray-50 via-stone-50 to-gray-50">
       {/* Background decorations */}
       <div class="absolute top-1/4 left-10 w-64 h-64 bg-amber-200/20 rounded-full blur-3xl"></div>
       <div class="absolute bottom-1/4 right-10 w-64 h-64 bg-stone-300/20 rounded-full blur-3xl"></div>
@@ -69,39 +69,67 @@ export default component$(() => {
 
         {/* Services Grid */}
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-          {services.map((service, index) => (
-            <a
-              key={index}
-              href={service.link}
-              class="group relative bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl p-8 hover:border-amber-400/50 transition-all duration-300 hover:scale-105 hover:shadow-xl"
-            >
-              {/* Icon */}
-              <div class="mb-6 text-amber-600 group-hover:text-amber-500 transition-colors">
-                {service.icon}
-              </div>
+          {services.map((service, index) => {
+            // Apply stone/orange/amber theme to icons
+            const iconColors = [
+              "text-stone-600 group-hover:text-stone-500",
+              "text-orange-600 group-hover:text-orange-500",
+              "text-amber-600 group-hover:text-amber-500",
+              "text-stone-600 group-hover:text-stone-500"
+            ];
+            const hoverBorders = [
+              "hover:border-stone-400/50",
+              "hover:border-orange-400/50",
+              "hover:border-amber-400/50",
+              "hover:border-stone-400/50"
+            ];
+            const titleHovers = [
+              "group-hover:text-stone-600",
+              "group-hover:text-orange-700",
+              "group-hover:text-amber-700",
+              "group-hover:text-stone-600"
+            ];
+            const arrowColors = [
+              "text-stone-600",
+              "text-orange-600",
+              "text-amber-600",
+              "text-stone-600"
+            ];
 
-              {/* Title */}
-              <h3 class="text-2xl font-bold text-stone-800 mb-4 group-hover:text-amber-700 transition-colors">
-                {service.title}
-              </h3>
+            return (
+              <a
+                key={index}
+                href={service.link}
+                class={`group relative bg-gradient-to-br from-white/95 to-stone-100/95 border border-stone-200/80 rounded-2xl p-8 ${hoverBorders[index]} transition-all duration-300 hover:scale-105 hover:shadow-xl`}
+              >
+                {/* Icon */}
+                <div class={`mb-6 ${iconColors[index]} transition-colors`}>
+                  {service.icon}
+                </div>
 
-              {/* Description */}
-              <p class="text-stone-500 leading-relaxed mb-4">
-                {service.description}
-              </p>
+                {/* Title */}
+                <h3 class={`text-2xl font-bold text-stone-800 mb-4 ${titleHovers[index]} transition-colors`}>
+                  {service.title}
+                </h3>
 
-              {/* Hover arrow */}
-              <div class="flex items-center text-amber-600 font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                <span class="mr-2">Learn more</span>
-                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </div>
+                {/* Description */}
+                <p class="text-stone-500 leading-relaxed mb-4">
+                  {service.description}
+                </p>
 
-              {/* Gradient overlay on hover */}
-              <div class="absolute inset-0 bg-gradient-to-br from-amber-50/0 to-amber-50/0 group-hover:from-amber-50/50 group-hover:to-transparent rounded-2xl transition-all duration-300"></div>
-            </a>
-          ))}
+                {/* Hover arrow */}
+                <div class={`flex items-center ${arrowColors[index]} font-medium opacity-0 group-hover:opacity-100 transition-opacity`}>
+                  <span class="mr-2">Learn more</span>
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                  </svg>
+                </div>
+
+                {/* Gradient overlay on hover */}
+                <div class="absolute inset-0 bg-gradient-to-br from-stone-50/0 to-stone-50/0 group-hover:from-stone-50/30 group-hover:to-transparent rounded-2xl transition-all duration-300"></div>
+              </a>
+            );
+          })}
         </div>
       </div>
     </section>
