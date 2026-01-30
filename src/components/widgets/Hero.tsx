@@ -20,6 +20,7 @@ export default component$(() => {
   // 3D Flip card state
   const isFlipped = useSignal<boolean>(false);
   const flipTarget = useSignal<FlipTarget>('none');
+  const flipTouchStartX = useSignal<number>(0);
   const flipTouchStartY = useSignal<number>(0);
 
   // Menu accordion state for flip card
@@ -224,19 +225,23 @@ export default component$(() => {
     menuOpenIndex.value = null;
   });
 
-  // Swipe down handler for back of card
+  // Swipe handler for back of card (down or horizontal to close)
   const handleBackTouchStart = $((e: TouchEvent) => {
     e.stopPropagation();
+    flipTouchStartX.value = e.touches[0].clientX;
     flipTouchStartY.value = e.touches[0].clientY;
   });
 
   const handleBackTouchEnd = $((e: TouchEvent) => {
     e.stopPropagation();
-    const diff = e.changedTouches[0].clientY - flipTouchStartY.value;
-    if (diff > 80) {
-      // Swipe down threshold of 80px
+    const diffX = Math.abs(e.changedTouches[0].clientX - flipTouchStartX.value);
+    const diffY = e.changedTouches[0].clientY - flipTouchStartY.value;
+
+    // Swipe down (80px) or horizontal swipe (50px) to close
+    if (diffY > 80 || diffX > 50) {
       handleFlipBack();
     }
+    flipTouchStartX.value = 0;
     flipTouchStartY.value = 0;
   });
 
