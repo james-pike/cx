@@ -2,7 +2,8 @@ import { component$, useSignal, useVisibleTask$, useStyles$, $ } from "@builder.
 import { Image } from "@unpic/qwik";
 import { menuItems } from "./MenuModal";
 import IconHamburger from "../icons/IconHamburger";
-import { LuX, LuChevronRight, LuMapPin, LuMail, LuClock, LuFacebook, LuInstagram, LuSun, LuMoon } from "@qwikest/icons/lucide";
+import { LuX, LuChevronRight, LuMapPin, LuMail, LuClock, LuSun, LuMoon } from "@qwikest/icons/lucide";
+import { SiX, SiDiscord, SiTelegram } from "@qwikest/icons/simpleicons";
 
 // NFT-specific menu items for hero card
 const nftMenuItems = [
@@ -110,7 +111,7 @@ export default component$(() => {
     {
       badge: "Ethereum NFT",
       title: ["Azuki"],
-      description: "10,000 anime-inspired PFPs on Ethereum. Metadata stored on IPFS.",
+      description: "10,000 anime PFPs on Ethereum. ERC-721 with IPFS.",
       stats: [
         { value: "10K", label: "Supply" },
         { value: "ETH", label: "Chain" },
@@ -124,7 +125,7 @@ export default component$(() => {
     {
       badge: "Bitcoin Ordinal",
       title: ["NodeMonkes"],
-      description: "10,000 pixel monkes on Bitcoin. Fully on-chain and immutable.",
+      description: "10,000 pixel monkes on Bitcoin. Fully on-chain.",
       stats: [
         { value: "10K", label: "Supply" },
         { value: "BTC", label: "Chain" },
@@ -138,7 +139,7 @@ export default component$(() => {
     {
       badge: "Kaspa NFT",
       title: ["Jeets"],
-      description: "10,000 unique cats on Kaspa. KRC-721 with IPFS storage.",
+      description: "10,000 jeets on Kaspa. KRC-721 with IPFS.",
       stats: [
         { value: "10K", label: "Supply" },
         { value: "KAS", label: "Chain" },
@@ -565,17 +566,8 @@ export default component$(() => {
                                 ))}
                               </div>
 
-                          {/* Single button */}
-                          <button
-                            onClick$={() => handleFlip('portfolio')}
-                            class={`group w-full px-6 py-3 bg-gradient-to-r ${style.button} font-semibold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center`}
-                          >
-                            View Collection
-                            <span class="inline-block ml-2 transition-transform group-hover:translate-x-1">→</span>
-                          </button>
-
                           {/* Navigation Menu */}
-                          <div class={`mt-4 pt-4 border-t ${style.divider}`}>
+                          <div class={`pt-4 border-t ${style.divider}`}>
                             <nav class="space-y-1">
                               {nftMenuItems.map((item, menuIdx) => (
                                 <div key={menuIdx}>
@@ -606,23 +598,37 @@ export default component$(() => {
                             </nav>
 
                             {/* Social Links */}
-                            <div class={`mt-3 pt-3 border-t ${style.divider} flex justify-center gap-4`}>
-                              <a
-                                href="https://www.facebook.com/p/earthen-vessels-61562702795370/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class={`p-2 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
-                              >
-                                <LuFacebook class="w-5 h-5" />
-                              </a>
-                              <a
-                                href="https://www.instagram.com/earthenvesselspottery_/"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class={`p-2 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
-                              >
-                                <LuInstagram class="w-5 h-5" />
-                              </a>
+                            {/* Bottom row: Badge left, Social icons right */}
+                            <div class={`mt-3 pt-3 border-t ${style.divider} flex items-center justify-between`}>
+                              <span class={`px-2 py-0.5 rounded-full ${style.badge} text-xs font-medium`}>
+                                nft.cx/{card.collection.toLowerCase().replace(/\s+/g, '')}
+                              </span>
+                              <div class="flex gap-2">
+                                <a
+                                  href="https://x.com/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-1.5 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <SiX class="w-4 h-4" />
+                                </a>
+                                <a
+                                  href="https://discord.gg/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-1.5 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <SiDiscord class="w-4 h-4" />
+                                </a>
+                                <a
+                                  href="https://t.me/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-1.5 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <SiTelegram class="w-4 h-4" />
+                                </a>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -703,22 +709,30 @@ export default component$(() => {
                               </nav>
 
                               {/* Social Links */}
-                              <div class={`mt-4 pt-4 border-t ${style.divider} flex justify-center gap-6`}>
+                              <div class={`mt-4 pt-4 border-t ${style.divider} flex justify-center gap-4`}>
                                 <a
-                                  href="https://www.facebook.com/p/earthen-vessels-61562702795370/"
+                                  href="https://x.com/"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   class={`p-3 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
                                 >
-                                  <LuFacebook class="w-6 h-6" />
+                                  <SiX class="w-5 h-5" />
                                 </a>
                                 <a
-                                  href="https://www.instagram.com/earthenvesselspottery_/"
+                                  href="https://discord.gg/"
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   class={`p-3 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
                                 >
-                                  <LuInstagram class="w-6 h-6" />
+                                  <SiDiscord class="w-5 h-5" />
+                                </a>
+                                <a
+                                  href="https://t.me/"
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  class={`p-3 rounded-full ${style.innerBg} border ${style.border} ${style.statValue} hover:scale-110 transition-transform`}
+                                >
+                                  <SiTelegram class="w-5 h-5" />
                                 </a>
                               </div>
 
@@ -975,8 +989,8 @@ export default component$(() => {
                     <div class={`relative bg-gradient-to-br ${ds.leftBg} backdrop-blur-md border-2 border-r-0 ${ds.leftBorder} rounded-l-2xl p-8 xl:p-12`}>
                       <div class={`absolute inset-0 ${ds.leftInner} -z-10 rounded-l-2xl`}></div>
                       <div class="inline-block mb-4">
-                        <span class={`px-4 py-2 rounded-full ${ds.badge} text-base font-medium tracking-wide`}>
-                          nft.cx
+                        <span class={`px-5 py-2 rounded-full ${ds.badge} text-xl font-semibold tracking-wide`}>
+                          {card.collection}
                         </span>
                       </div>
 
@@ -987,16 +1001,6 @@ export default component$(() => {
                       <p class={`text-base xl:text-lg ${ds.description} mb-6 max-w-md`}>
                         {card.description}
                       </p>
-
-                      <a
-                        href={card.ipfsGateway}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        class={`group/btn inline-block px-6 py-3 mb-6 bg-gradient-to-r ${ds.button} font-semibold rounded-lg shadow-lg transition-all duration-300 hover:scale-105 text-center`}
-                      >
-                        View Collection
-                        <span class="inline-block ml-2 transition-transform group-hover/btn:translate-x-1">→</span>
-                      </a>
 
                       <div class={`grid grid-cols-3 gap-4 pt-4 border-t ${ds.divider}`}>
                         {card.stats.map((stat, idx) => (

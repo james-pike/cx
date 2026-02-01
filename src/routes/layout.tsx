@@ -2,7 +2,6 @@ import { component$, Slot, useVisibleTask$ } from "@builder.io/qwik";
 import { routeLoader$, useLocation } from "@builder.io/qwik-city";
 import { inject } from "@vercel/analytics";
 
-import Footer from "~/components/widgets/Footer";
 import Header from "~/components/widgets/Header";
 import { tursoClient } from "~/lib/turso";
 //
@@ -42,7 +41,6 @@ export default component$(() => {
       <main>
         <Slot />
       </main>
-      <Footer />
     </>
   );
 });
