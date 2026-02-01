@@ -456,8 +456,8 @@ export default component$(() => {
 
                           {/* Badge and controls row */}
                           <div class="flex items-center justify-between mb-3">
-                            <span class={`px-3 py-1 rounded-full ${style.badge} text-sm font-medium tracking-wide`}>
-                              nft.cx
+                            <span class={`px-4 py-1.5 rounded-full ${style.badge} text-lg font-semibold tracking-wide`}>
+                              {card.collection}
                             </span>
                             <div class="flex gap-2">
                               {/* Theme Toggle */}
